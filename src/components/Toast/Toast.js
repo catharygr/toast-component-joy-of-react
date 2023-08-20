@@ -33,14 +33,14 @@ function handleIcon(variant) {
   }
 }
 
-function Toast({ children, variant }) {
+function Toast({ children, variant, handleClick }) {
   // const Icon = ICONS_BY_VARIANT[form.variant];
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>{handleIcon(variant)}</div>
       <p className={styles.content}>{children}</p>
-      <button className={styles.closeButton}>
+      <button onClick={() => handleClick(false)} className={styles.closeButton}>
         <X size={24} />
 
         <VisuallyHidden>Dismiss message</VisuallyHidden>
