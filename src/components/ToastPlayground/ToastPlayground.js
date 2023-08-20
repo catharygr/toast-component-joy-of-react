@@ -26,7 +26,7 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      <Toast form={form} />
+      <Toast variant={variant}>{message}</Toast>
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
