@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import Button from "../Button";
-import Toast from "../Toast";
 import ToastShelf from "../ToastShelf";
 import styles from "./ToastPlayground.module.css";
 
@@ -29,14 +28,7 @@ function ToastPlayground() {
   function handleSubmit(event) {
     event.preventDefault();
     const uuid = crypto.randomUUID();
-    setToasts((oldToast) => [
-      ...oldToast,
-      <li key={uuid} className={styles.toastWrapper}>
-        <Toast uuid={uuid} variant={form.variant} closeToast={closeToast}>
-          {form.message}
-        </Toast>
-      </li>,
-    ]);
+    setToasts((oldToast) => [...oldToast, { ...form, key: uuid }]);
     setForm({
       message: "",
       variant: "notice",
@@ -50,7 +42,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf>{toasts}</ToastShelf>
+      <ToastShelf closeToast={closeToast} toasts={toasts} />
 
       <form onSubmit={handleSubmit} className={styles.controlsWrapper}>
         <div className={styles.row}>
