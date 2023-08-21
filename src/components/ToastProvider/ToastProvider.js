@@ -7,7 +7,7 @@ function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
 
   return (
-    <ToastContext.Provider value={[toasts, setToasts]}>
+    <ToastContext.Provider value={{ toasts, setToasts }}>
       {children}
     </ToastContext.Provider>
   );
