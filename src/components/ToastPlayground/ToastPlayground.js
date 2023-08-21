@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Button from "../Button";
 import ToastShelf from "../ToastShelf";
 import styles from "./ToastPlayground.module.css";
@@ -34,6 +34,18 @@ function ToastPlayground() {
       variant: "notice",
     });
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setToasts([]);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [setToasts]);
 
   return (
     <div className={styles.wrapper}>
