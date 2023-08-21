@@ -1,13 +1,13 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../Button";
 import ToastShelf from "../ToastShelf";
 import styles from "./ToastPlayground.module.css";
+import { ToastContext } from "../ToastProvider/ToastProvider";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
-  const [toasts, setToasts] = useState([]);
+  const { setToasts } = useContext(ToastContext);
   const [form, setForm] = useState({
     message: "",
     variant: "notice",
@@ -42,7 +42,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf closeToast={closeToast} toasts={toasts} />
+      <ToastShelf closeToast={closeToast} />
 
       <form onSubmit={handleSubmit} className={styles.controlsWrapper}>
         <div className={styles.row}>
