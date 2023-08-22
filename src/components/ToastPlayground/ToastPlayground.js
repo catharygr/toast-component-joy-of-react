@@ -3,6 +3,7 @@ import Button from "../Button";
 import ToastShelf from "../ToastShelf";
 import styles from "./ToastPlayground.module.css";
 import { ToastContext } from "../ToastProvider/ToastProvider";
+import { useEscapeKey } from "../../hooks/useEscapeKey";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
@@ -35,17 +36,7 @@ function ToastPlayground() {
     });
   }
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setToasts([]);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [setToasts]);
+  useEscapeKey(setToasts);
 
   return (
     <div className={styles.wrapper}>
