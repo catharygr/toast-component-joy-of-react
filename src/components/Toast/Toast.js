@@ -24,7 +24,10 @@ function Toast({ children, variant, closeToast, uuid }) {
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>{<Icon size={24} />}</div>
-      <p className={styles.content}>{children}</p>
+      <p className={styles.content}>
+        <VisuallyHidden>{variant} - </VisuallyHidden>
+        {children}
+      </p>
       <button
         onClick={() => closeToast(uuid)}
         className={styles.closeButton}
@@ -32,6 +35,8 @@ function Toast({ children, variant, closeToast, uuid }) {
         aria-live="off"
       >
         <X size={24} />
+
+        {/* <VisuallyHidden>Dismiss message</VisuallyHidden> */}
       </button>
     </div>
   );
