@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../Button";
 import ToastShelf from "../ToastShelf";
 import styles from "./ToastPlayground.module.css";
